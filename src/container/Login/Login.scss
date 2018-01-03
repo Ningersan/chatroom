@@ -21,11 +21,7 @@ body {
 }
 
 @media (max-width: $breakpoint-tablet) {
-    body {
-        background: url('../imgs/bg.jpg') center center;
-        background-size: cover;
-        background-attachment: fixed;
-    }
+    // 
 }
 
 .login-box {
@@ -40,9 +36,14 @@ body {
     margin-left: -150px;
     margin-top: -100px;
     background: rgba(255, 255, 255, .8);
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 20px;
     color: rgb(51, 51, 51);
+    h2 {
+        color: #D0648A;
+        font-size: 20px;
+        font-weight: 600;
+    }
     input {
         height: 30px;
         font-size: 12px;
@@ -86,16 +87,22 @@ body {
 }
 
 .chat-room {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    transform: translate(-50%, -50%);
     color: #fff;
+    width: 360px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 30px 0 rgba(34, 195, 170, 0.5);
     .welcome {
-        @include clearfix;
+        // @include clearfix;
         width: 100%;
         color: rgba(0, 0, 0, 0.870588);
         background: #fff;
-        padding: 10px 0;
-        position: fixed;
-        top: 0;
         line-height: 24px;
+        overflow: hidden;
         .room-name {
             float: left;
             margin-left: 5%;

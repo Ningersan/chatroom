@@ -1,16 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-import Login from './Login/Login'
+import Login from '../Login/Login'
+import ChatRoom from '../../components/ChatRoom'
 
 class App extends Component {
     constructor() {
         super()
-        this.state({ 
+        this.state = {
             isLogined: false,
             username: '',
             uid: '',
-            socket: io()
-        })
-        this.handleClickLogin = this.handleClickLogin.bind(this)
+            socket: io(),
+        }
+        this.handleClick = this.handleClick.bind(this)
         this.handleKeyPress = this.handleKeyPress.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
@@ -26,12 +27,12 @@ class App extends Component {
     }
 
     // 监控点击提交或按回车
-    handleClickLogin(e) {
+    handleClick(e) {
         e.preventDefault();
         this.handleLogin();
     }
 
-    handleLKeyPress(e) {
+    handleKeyPress(e) {
         if (e.key == 'Enter') {
             this.handleLogin()
         }
@@ -41,26 +42,25 @@ class App extends Component {
     // 登陆
     handleLogin() {
         let username = this.state.username;
-
-        // 随机生成游客名字
-        // username = '游客' + Math.floor(Math.random()*89+10)
         const uid = this.generateUid();
+
         if (!username) {
             username = '游客' + uid;
         }
-        this.setState({ uid: uid, username: username });
+
+        this.setState({ isLogined: true, uid: uid, username: username });
         this.state.socket.emit('login', { uid: uid, username: username })
     }
 
     render() {
-        return isLogined ?
+        return !this.state.isLogined ?
             <Login
-              onClick={this.handleClickLogin}
+              onClick={this.handleClick}
               onChange={this.handleChange}
-              onKeyPress={this.handleLKeyPress}
+              onKeyPress={this.handleKeyPress}
             />
             : <ChatRoom
-                uid={this.state.uid} 
+                uid={this.state.uid}
                 username={this.state.username}
                 socket={this.state.socket}
             />

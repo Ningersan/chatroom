@@ -1,21 +1,26 @@
 import React, { Component, PropTypes } from 'react';
-import './loginbox.scss';
+import './Login.scss';
 
-export default class Login extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
+        const { onChange, onKeyPress, onClick } = this.props
         return (
             <div className="login-box">
-                <h2>登 陆</h2>
+                <h2>登 录</h2>
                 <div className="input">
-                    <input type="text" placeholder="请输入用户名" onChange={this.handleChange.bind(this)}
-                        onKeyPress={this.handleKeyPress.bind(this)} />
+                    <input
+                      type="text"
+                      placeholder="请输入用户名"
+                      onChange={onChange}
+                      onKeyPress={onKeyPress}
+                    />
                 </div>
                 <div className="submit">
-                    <button type="button" onClick={this.handleClick.bind(this)} >提交</button>
+                    <button type="button" onClick={onClick} >提交</button>
                 </div>
             </div>
         )
