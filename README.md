@@ -14,6 +14,3 @@ A chatroom powered by React and Websocket
     npm start
 
 4. Open `http://localhost:3300`
-
-## Preview
-![image](https://github.com/ymyqwe/Websocket-React-Chatroom/raw/master/chat.gif)
