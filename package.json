@@ -1,0 +1,44 @@
+{
+  "name": "websocket-react-chatroom",
+  "version": "1.0.0",
+  "description": "A chatroom powered by React and Websocket",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymyqwe/Websocket-React-Chatroom.git"
+  },
+  "keywords": [
+    "React",
+    "Websocket",
+    "Chatroom"
+  ],
+  "author": "ManiaU",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ymyqwe/Websocket-React-Chatroom/issues"
+  },
+  "homepage": "https://github.com/ymyqwe/Websocket-React-Chatroom#readme",
+  "dependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "css-loader": "^0.26.1",
+    "express": "^4.14.1",
+    "file-loader": "^0.10.0",
+    "node-sass": "^4.5.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "sass-loader": "^5.0.1",
+    "socket.io": "^1.7.2",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.2.1",
+    "webpack-dev-middleware": "^1.10.0",
+    "webpack-hot-middleware": "^2.16.1"
+  }
+}
