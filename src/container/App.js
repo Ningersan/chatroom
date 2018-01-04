@@ -1,20 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import ChatRoom from '../components/ChatRoom';
-import './loginbox.scss';
+import React, { Component, PropTypes } from 'react'
+import ChatRoom from '../components/ChatRoom'
+import './loginbox.scss'
 
 class App extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             username:'',
             uid:'',
-            socket: io()
         }
-    }
-
-    // 生成用户id
-    generateUid() {
-        return new Date().getTime()+ "" + Math.floor(Math.random() * 9 + 1);
+        this.socket = io()
     }
 
     // 监控名称变化
@@ -37,22 +32,24 @@ class App extends Component {
 
     // 登陆
     handleLogin() {
-        let username = this.state.username;
-
-        // 随机生成游客名字
-        // username = '游客' + Math.floor(Math.random()*89+10)
-        const uid = this.generateUid();
+        let username = this.state.username
+        const uid = this.getUid();
         if (!username) {
             username = '游客'+ uid;
         }
         this.setState({uid:uid, username:username});
-        this.state.socket.emit('login', {uid:uid, username:username})
+        this.socket.emit('login', {uid:uid, username:username})
+    }
+
+    // 生成用户id
+    getUid() {
+        return new Date().getTime() + "" + Math.floor(Math.random() * 9 + 1)
     }
 
     render() {
         let renderDOM;
         if (this.state.uid) {
-            renderDOM = <ChatRoom uid={this.state.uid} username={this.state.username} socket={this.state.socket}/>
+            renderDOM = <ChatRoom uid={this.state.uid} username={this.state.username} socket={this.socket}/>
         } else {
             renderDOM = (<div className="login-box">
                             <h2>登 陆</h2>

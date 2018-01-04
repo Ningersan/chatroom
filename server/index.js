@@ -27,14 +27,15 @@ var onlineCount = 0;
 
 io.on('connection', function (socket) {
     // 监听客户端的登陆
-    socket.on('login', function (obj) {
+    socket.on('login', function (user) {
+        const { uid, username } = user
 
         // 用户id设为socketid
-        socket.id = obj.uid;
+        socket.id = uid;
 
         // 如果没有这个用户，那么在线人数+1，将其添加进在线用户
-        if (!onlineUsers.hasOwnProperty(obj.uid)) {
-            onlineUsers[obj.uid] = obj.username;
+        if (!onlineUsers.hasOwnProperty(uid)) {
+            onlineUsers[uid] = username;
             onlineCount++;
         } else {
             socket.emit('loginFail', '')
@@ -44,9 +45,9 @@ io.on('connection', function (socket) {
         io.emit('login', {
             onlineUsers: onlineUsers,
             onlineCount: onlineCount,
-            user: obj
+            user: user
         });
-        console.log(obj.username + '加入了群聊');
+        console.log(username + '加入了群聊');
     })
 
     // 监听客户端的断开连接
@@ -54,7 +55,7 @@ io.on('connection', function (socket) {
 
         // 如果有这个用户
         if (onlineUsers.hasOwnProperty(socket.id)) {
-            var obj = {
+            var user = {
                 uid: socket.id,
                 username: onlineUsers[socket.id]
             };
@@ -67,9 +68,9 @@ io.on('connection', function (socket) {
             io.emit('logout', {
                 onlineUsers: onlineUsers,
                 onlineCount: onlineCount,
-                user: obj
+                user: user
             });
-            console.log(obj.username + '退出了群聊');
+            console.log(user.username + '退出了群聊');
         }
     })
 

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
 import Login from '../Login/Login'
 import ChatRoom from '../../components/ChatRoom'
 
@@ -16,11 +16,6 @@ class App extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
-    // 生成用户id
-    generateUid() {
-        return new Date().getTime() + "" + Math.floor(Math.random() * 9 + 1);
-    }
-
     // 监控名称变化
     handleChange(e) {
         this.setState({ username: e.target.value })
@@ -28,8 +23,8 @@ class App extends Component {
 
     // 监控点击提交或按回车
     handleClick(e) {
-        e.preventDefault();
-        this.handleLogin();
+        e.preventDefault()
+        this.handleLogin()
     }
 
     handleKeyPress(e) {
@@ -41,15 +36,16 @@ class App extends Component {
 
     // 登陆
     handleLogin() {
-        let username = this.state.username;
-        const uid = this.generateUid();
-
-        if (!username) {
-            username = '游客' + uid;
-        }
+        const uid = this.getUid();
+        const username = this.state.username || `游客 ${uid}`;
 
         this.setState({ isLogined: true, uid: uid, username: username });
         this.state.socket.emit('login', { uid: uid, username: username })
+    }
+
+    // 生成用户id
+    getUid() {
+        return new Date().getTime() + "" + Math.floor(Math.random() * 9 + 1)
     }
 
     render() {
